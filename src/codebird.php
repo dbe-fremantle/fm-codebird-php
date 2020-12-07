@@ -79,7 +79,10 @@ class Codebird
     'streaming'    => [
       'public'     => 'https://stream.twitter.com/1.1/'
     ],
-    'ton'          => 'https://ton.twitter.com/1.1/'
+    'ton'          => 'https://ton.twitter.com/1.1/',
+    'labs1'        => 'https://api.twitter.com/labs/1/',
+    'labs2'        => 'https://api.twitter.com/labs/2/',
+    'v2'           => 'https://api.twitter.com/2/',
   ];
 
   /**
@@ -2056,6 +2059,22 @@ class Codebird
       $url = self::$_endpoints['ads']['sandbox'] . substr($method, 12);
     } elseif (substr($method_template, 0, 4) === 'ads/') {
       $url = self::$_endpoints['ads']['production'] . substr($method, 4);
+    } elseif ($method == "tweets/metrics/private") {
+        $url = self::$_endpoints['labs1'] . $method;
+    } elseif ($method == "tweets/search") {
+        $url = self::$_endpoints['labs2'] . $method;
+    } elseif ($method == "tweets/search/recent") {
+        $url = self::$_endpoints['v2'] . $method;
+    } elseif ($method == "users") {
+        $url = self::$_endpoints['v2'] . $method;
+    } elseif (preg_match("/users\/(.*)/", $method)) {
+        $url = self::$_endpoints['v2'] . $method;
+    } elseif ($method == "users/by") {
+        $url = self::$_endpoints['v2'] . $method;
+    } elseif (preg_match("/users\/by\/username\/(.*)/", $method)) {
+        $url = self::$_endpoints['v2'] . $method;
+    } elseif (preg_match("/tweets\/?(.*)/", $method)) {
+        $url = self::$_endpoints['v2'] . $method;
     }
     return $url;
   }
