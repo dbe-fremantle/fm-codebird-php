@@ -339,6 +339,8 @@ class Codebird
       'users',
       'users/by',
       'users/:id',
+      'users/:id/tweets',
+      'users/:id/mentions',
       'users/by/username/:username',
     ],
     'POST' => [
