@@ -1007,7 +1007,7 @@ class Codebird
     $params = [
       'screen_name', 'place_id', 'env_name',
       'account_id', 'campaign_id', 'card_id', 'line_item_id',
-      'tweet_id', 'web_event_tag_id', 'username', 'id'k
+      'tweet_id', 'web_event_tag_id', 'username', 'id'
     ];
     foreach ($params as $param) {
       $param = strtoupper($param);
